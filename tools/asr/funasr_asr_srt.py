@@ -49,6 +49,7 @@ def execute_asr(input_folder, output_folder, model_size, language):
             output.append(f"{input_folder}/{name}|{output_file_name}|{language.upper()}|{text}")
             with open(f'{output_folder}/for_timestamp_matching.txt', "w", encoding="utf-8") as f:
                 for_ts = " ".join(res[0]["text"])
+                for_ts += "\n"
                 print(for_ts)
                 f.write(for_ts)
         except:

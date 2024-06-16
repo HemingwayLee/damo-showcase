@@ -22,11 +22,11 @@ from datetime import timedelta
 # text_file = f"/workspace/tools/asr/asr_output/for_timestamp_matching.txt"
 # res = model.generate(input=(wav_file, text_file), data_type=("sound", "text"))
 
-with open('./data/for_timestamp_matching.txt', encoding="utf-8") as fp:
+with open('./data/57-3.txt', encoding="utf-8") as fp:
     contents = fp.read()
     # print(contents)
 
-with open('./data/for_timestamp_matching.json', encoding='utf-8') as fp:
+with open('./data/57-3.json', encoding='utf-8') as fp:
     data = json.load(fp)
     # print(data)
 
@@ -37,7 +37,7 @@ tss = data['timestamp']
 first = data["key"]
 # pred_txt.insert(0, first) 
 
-print(f"len: {len(contents.replace('。', '').replace('，', '').split())}")
+print(f"len: {len(contents.replace('？', '').replace('、', '').replace('。', '').replace('，', '').split())}")
 print(f"len: {len(tss)}")
 print(f"len: {len(pred_txt)}")
 
@@ -47,12 +47,12 @@ j = 0
 start_ts = 0
 end_ts = 0
 for i, char in enumerate(contents.split()):
-    print(f"{i}: {char}")
+    # print(f"{i}: {char}")
     if i == 0:
         sentence = sentence + first
         continue
 
-    if char == "。" or char == "，" or char == "?" or char == "!":
+    if char == "。" or char == "，" or char == "、" or char == "？" or char == "!":
         res.append({
             "start": str(timedelta(milliseconds=start_ts)),
             "end": str(timedelta(milliseconds=end_ts)),
